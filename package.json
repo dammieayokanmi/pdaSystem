@@ -1,16 +1,20 @@
 {
-  "name": "pda-system",
+  "name": "pdaSystem",
   "version": "1.0.0",
   "description": "Remote wireless patient's data access system",
   "main": "server.js",
   "scripts": {
     "start": "mode server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@date-io/date-fns": "^2.10.6",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.2",
     "express": "^4.17.1",

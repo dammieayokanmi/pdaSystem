@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://dammie123:dammie123@pdasystem.qpsie.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret": "secret"
+}
