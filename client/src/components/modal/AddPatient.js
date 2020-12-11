@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 
 `;
 
-class AddReadingModal extends React.Component {
+class AddPatient extends React.Component {
     state = {
       show: false,
       meals: "",
@@ -33,21 +33,21 @@ class AddReadingModal extends React.Component {
                       handleClose={this.hideModal}
 				position="modal-right"
 				heading={
-					"Upload Reading"
+					"Add a new Patient"
 				}
 			>
 			<PatientForm/>
 			</Modal>
 
 			<div onClick={this.showModal}>
-			<Button theme="blueBtn" >Upload Reading</Button>
+			<Button theme="blueBtn">Add new patient</Button>
 
 			</div>
 		</Wrapper>
 	);
 }};
 
-AddReadingModal.propTypes = {
+AddPatient.propTypes = {
 };
 
-export default AddReadingModal;
+export default AddPatient;

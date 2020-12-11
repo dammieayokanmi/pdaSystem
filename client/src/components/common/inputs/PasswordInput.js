@@ -89,6 +89,8 @@ const PasswordInput = ({ label, onChange, value, placeholder, error, name }) => 
 					className="input"
 					type={values.showPassword ? 'text' : 'password'}
 					value={value}
+					required={true}
+					minLength="6"
 					name={name}
 					onChange={onChange}
 				/>
@@ -98,7 +100,7 @@ const PasswordInput = ({ label, onChange, value, placeholder, error, name }) => 
 						onMouseDown={handleMouseDownPassword}
 						edge="end"
 					>
-						{values.showPassword ? 	<img src={show} alt="showPassword"/>: "off"}
+						{values.showPassword ? 	<img src={show} alt="showPassword"/>: "see"}
 					</IconButton>
 				</div>
 				<p className="error">{error && error}</p>

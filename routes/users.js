@@ -15,7 +15,7 @@ router.post(
   [
     check("name", "Name is required").not().isEmpty(),
     check("email", "Username is required").isEmail(),
-    check("ID", "ID is required").not().isEmpty(),
+    // check("ID", "ID is required").not().isEmpty(),
     check("field", "Field is required").not().isEmpty(),
     check("phoneNumber", "Phone Number must be 11 characters").isLength({
       min: 11,
@@ -31,27 +31,23 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, ID, field, phoneNumber, password } = req.body;
+    const { name, email, field, phoneNumber, password } = req.body;
 
     try {
-      let user = await User.findOne({ email , ID});
-      let userId = await User.findOne({ ID });
+      let user = await User.findOne({ email});
+      // let userId = await User.findOne({ ID });
 
       if (user) {
         return res.status(400).json({ msg: "User already exists" });
       }
-      else{
-        if (userId) {
-          return res.status(400).json({ msg: "ID taken" });
-        }
-      }
+     
 
      
 
       user = new User({
         name,
         email,
-        ID,
+        // ID,
         field,
         phoneNumber,
         password,

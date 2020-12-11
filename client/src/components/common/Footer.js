@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   .buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 60%;
+    width: max-content;
     grid-gap: 1rem;
     margin-left: auto;
     @media screen and (max-width: ${(props) => props.theme.breakpoint.sm}) {
@@ -27,9 +27,7 @@ function PatientProfile({btnText, to}) {
         <Wrapper>
              <hr className="hr" />
         <div className="buttons">
-          <Link to={to}>
-    <Button theme="whiteBtn">{btnText}</Button>
-</Link>
+        
 <Link to='/login'>
 <Button theme="blackBtn">Logout</Button>
 </Link>

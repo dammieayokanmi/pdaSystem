@@ -60,6 +60,7 @@ const Wrapper = styled.div`
   }
   .big {
     font-size: 2.1rem;
+    margin-bottom: -35px;
     line-height: 4rem;
   }
   .close {
@@ -112,10 +113,6 @@ const index = ({
 			</div>
 		</Wrapper>
 	);
-};
-index.defaultProps = {
-	info:
-    'It is a long established fact that a reader will be distracted by the readable content.',
 };
 
 index.propTypes = {

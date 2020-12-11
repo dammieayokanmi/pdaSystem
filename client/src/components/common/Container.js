@@ -11,7 +11,7 @@ padding: 3rem 0;
     min-height: 550px;
   }
   .container {
-    max-width: ${(props) => props.theme.breakpoint.lg};
+    max-width: 1200px;
   }
   .midi {
     max-width: ${(props) => props.theme.breakpoint.md};

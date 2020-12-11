@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
-width: 100%;
+// width: 100%;
 .blueBtn {
 	border: 1px solid ${props => props.theme.color.ui_01};
     color: ${props => props.theme.color.text_01};
@@ -34,6 +34,16 @@ width: 100%;
 .blackBtn:hover{
 	color: ${props => props.theme.color.ui_01};
 	border: 1px solid ${props => props.theme.color.ui_01};
+	transition: 0.4s;
+}
+.redBtn {
+	color: red;
+	background-color: ${props => props.theme.color.text_01};
+	border: 1px solid red;
+}
+.redBtn:hover{
+	color: ${props => props.theme.color.ui_03};
+	border: 1px solid ${props => props.theme.color.ui_03};
 	transition: 0.4s;
 }
 

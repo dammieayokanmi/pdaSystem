@@ -1,27 +1,36 @@
-import React, {Fragment} from 'react';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import SelectPatient from './components/pages/SelectPatient';
-import AllPatients from './components/pages/AllPatients';
-import './App.css';
-import Theme from './Theme';
-
-import PatientState from './context/patient/PatientState';
+import React, { Fragment } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./components/pages/Home";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import Alerts from "./components/layouts/Alerts";
+import "./App.css";
+import Theme from "./Theme";
+import PatientState from "./context/patient/PatientState";
+import AuthState from "./context/auth/AuthState";
+import AlertState from "./context/alert/AlertState";
 
 const App = () => {
   return (
     <Theme>
-      <PatientState>
-    <Router>
-    <Fragment className="App">
-      <Switch>
-        <Route exact path="/" component={SelectPatient} />
-        <Route exact path="/all_patients" component={AllPatients} />
-      </Switch>
-    </Fragment>
-    </Router>
-    </PatientState>
+      <AuthState>
+        <PatientState>
+          <AlertState>
+            <Router>
+              <Fragment className="App">
+                <Alerts />
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/register" component={Register} />
+                  <Route exact path="/login" component={Login} />
+                </Switch>
+              </Fragment>
+            </Router>
+          </AlertState>
+        </PatientState>
+      </AuthState>
     </Theme>
-      );
-}
+  );
+};
 
 export default App;

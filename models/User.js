@@ -10,11 +10,11 @@ const UserSchema = mongoose.Schema({
         required: true,
         unique: true
     },
-    ID: {
-        type: Number,
-        required: true,
-        unique: true
-    },
+    // id: {
+    //     type: Number,
+    //     required: true,
+    //     unique: true
+    // },
     field: {
         type: String,
         required: true

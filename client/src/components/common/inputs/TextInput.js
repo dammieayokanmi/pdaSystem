@@ -77,6 +77,7 @@ const TextInput = ({ label, onChange, value, placeholder, error,  type, name }) 
 					className="input"
 					value={value}
 					name={name}
+					required={true}
 					onChange={onChange}
 					type={type ? type : 'text'}
 				/>
@@ -90,7 +91,7 @@ TextInput.propTypes = {
 	label: PropTypes.string,
 	error: PropTypes.string,
 	placeholder: PropTypes.string,
-	value: PropTypes.string.isRequired,
+	value: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 	type: PropTypes.string
 };

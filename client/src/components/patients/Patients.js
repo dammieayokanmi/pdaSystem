@@ -1,30 +1,33 @@
-import React, {Fragment, useContext} from 'react';
-import PatientContext from '../../context/patient/patientContext';
-import PatientItem from '../patients/PatientItem';
+import React, { Fragment, useContext } from "react";
+import PatientContext from "../../context/patient/patientContext";
+import PatientItem from "../patients/PatientItem";
 import Footer from "../common/Footer";
-import AppLayout from "../layouts/AppLayout";
 
 const Patients = () => {
-    const patientContext = useContext(PatientContext);
+  const patientContext = useContext(PatientContext);
 
-    const {patients} = patientContext;
+  const { patients, filtered } = patientContext;
 
-    return (
-        <AppLayout>
-        <Fragment>
-            {patients.map(patient => (
-            <PatientItem key={patient.id} patient={patient}/>
-            ))}
-                        <Footer btnText="Select another patient" to="/" />
+  if (patients.length === 0) {
+    return <h4>Please add a patient</h4>;
+  }
 
-        </Fragment>
-        </AppLayout>
-    );
+  return (
+    <Fragment>
+      {filtered !== null
+        ? filtered.map((patient) => (
+            <PatientItem key={patient.id} patient={patient} />
+          ))
+        : patients.map((patient) => (
+            <PatientItem key={patient.id} patient={patient} />
+          ))}
+      <Footer btnText="Select another patient" to="/" />
+    </Fragment>
+  );
 };
 
 // Patients.propTypes = {
 
 // }
 
-export default Patients
-
+export default Patients;
