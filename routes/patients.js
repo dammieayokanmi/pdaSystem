@@ -10,7 +10,7 @@ const Patient = require("../models/Patient");
 // @route    GET api/patients
 // @desc     Get all entire patients
 // @access   Private
-router.get("/",  async (req, res) => {
+router.get("/",   async(req, res) => {
     try {
       const patients = await Patient.find({ }).sort({
         date: -1,

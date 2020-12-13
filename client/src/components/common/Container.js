@@ -2,9 +2,10 @@ import React from "react";
 import { Container } from "@material-ui/core";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Navbar from "../common/Navbar";
 
 const Wrapper = styled.div`
-padding: 3rem 0;
+padding: 0 0 3rem 0;
   .centered {
     display: flex;
     align-items: center;
@@ -22,6 +23,7 @@ padding: 3rem 0;
 const MyContainer = ({ children, bg }) => {
   return (
     <Wrapper>
+       <Navbar/>
       <Container className={`${bg} container`}>{children}</Container>
     </Wrapper>
   );

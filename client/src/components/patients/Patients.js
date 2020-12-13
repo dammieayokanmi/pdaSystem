@@ -1,7 +1,6 @@
 import React, { Fragment, useContext } from "react";
 import PatientContext from "../../context/patient/patientContext";
 import PatientItem from "../patients/PatientItem";
-import Footer from "../common/Footer";
 
 const Patients = () => {
   const patientContext = useContext(PatientContext);
@@ -21,7 +20,7 @@ const Patients = () => {
         : patients.map((patient) => (
             <PatientItem key={patient.id} patient={patient} />
           ))}
-      <Footer btnText="Select another patient" to="/" />
+      
     </Fragment>
   );
 };

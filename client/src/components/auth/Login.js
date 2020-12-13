@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import smileDoc from '../../assets/pexels-photo-3714743.png'
 import styled from "styled-components";
@@ -8,6 +8,8 @@ import {
 } from "../../components/common/inputs";
 import { Grid } from "@material-ui/core";
 import AuthLayout from "../../components/layouts/AuthLayout";
+import AlertContext from '../../context/alert/alertContext'
+import AuthContext from '../../context/auth/authContext'
 
 const Wrapper = styled.div`
   .submit {
@@ -59,7 +61,25 @@ const Wrapper = styled.div`
   }
 `;
 
-const Login = () => {
+const Login = (props) => {
+  const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
+
+  const { setAlert } = alertContext;
+  const {login,error, clearErrors, isAuthenticated} = authContext;
+
+  useEffect (() => {
+    if(isAuthenticated) {
+      props.history.push('/')
+    }
+    
+        if(error === 'Invalid Credentials'){
+          setAlert( error, 'error');
+          clearErrors();
+        } 
+        //eslint-disable-next-line
+      }, [error, isAuthenticated, props.history]);
+    
   const [user, setUser] = useState({
     
     email: "",
@@ -74,8 +94,14 @@ const Login = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log('Login submit')
-  }
+    if (email === '' || password === '') {
+      setAlert('Please fill in all fields', 'error');
+    } else {
+      login({
+        email, password
+      });
+    }
+  };
   return (
     <Wrapper>
      <AuthLayout
@@ -101,9 +127,7 @@ const Login = () => {
                 onChange={onChange}
                 placeholder="Type here..."
               />
-            </Grid>
-
-          
+            </Grid>       
 
             <Grid item xs={12} sm={12}>
               <PasswordInput

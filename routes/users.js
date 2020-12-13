@@ -34,15 +34,12 @@ router.post(
     const { name, email, field, phoneNumber, password } = req.body;
 
     try {
-      let user = await User.findOne({ email});
+      let user = await User.findOne({ email });
       // let userId = await User.findOne({ ID });
 
       if (user) {
-        return res.status(400).json({ msg: "User already exists" });
+        return res.status(400).json({ msg: 'User already exists' });
       }
-     
-
-     
 
       user = new User({
         name,
@@ -77,7 +74,8 @@ router.post(
       );
     } catch (err) {
       console.error(err.message);
-      res.status(500).send("Server Error");
+      console.log(err);
+      return res.status(500).send("Server Error");
     }
   }
 );

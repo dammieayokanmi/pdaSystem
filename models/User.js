@@ -10,11 +10,6 @@ const UserSchema = mongoose.Schema({
         required: true,
         unique: true
     },
-    // id: {
-    //     type: Number,
-    //     required: true,
-    //     unique: true
-    // },
     field: {
         type: String,
         required: true
@@ -29,4 +24,4 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.models.users || mongoose.model("users", UserSchema);
