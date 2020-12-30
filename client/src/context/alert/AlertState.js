@@ -8,7 +8,6 @@ const AlertState = (props) => {
   const initialState = [];
 
   const [state, dispatch] = useReducer(alertReducer , initialState);
-
   // set ALert
   const setAlert = (msg, type, timeout = 5000) => {
     const id = uuid();

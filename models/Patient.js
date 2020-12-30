@@ -25,19 +25,11 @@ const PatientSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    gender: {
-        type: String,
-        required: true
-    },
     drugAllergies: {
         type: String,
     },
     foodAllergies: {
         type: String,
-    },
-    maritalStatus: {
-        type: String,
-        required: true
     },
     phoneNumber: {
         type: Number,
@@ -46,7 +38,34 @@ const PatientSchema = mongoose.Schema({
     occupation: {
         type: String,
         required: true
-    }
+    },
+    dateTaken: {
+        type: Number,
+        required: true
+    },
+    dob: {
+        type: String,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+  
+    maritalStatus: {
+        type: String,
+        required: true
+    },
+    doctorIncharge: {
+        type: String,
+        required: true
+    },
+  
+    nurseIncharge: {
+        type: String,
+        required: true
+    },
+   
 });
 
 module.exports = mongoose.model('patient', PatientSchema);

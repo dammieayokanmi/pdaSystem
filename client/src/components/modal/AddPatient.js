@@ -1,36 +1,38 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Modal from '../../components/modal';
 import Button from '../../components/common/Button';
 import PatientForm from '../patients/PatientForm'
+import AuthContext from "../../context/auth/authContext";
 
 
 const Wrapper = styled.div`
 
 `;
 
-class AddPatient extends React.Component {
-    state = {
-      show: false,
-      meals: "",
+function AddPatient() {
+	const authContext = useContext(AuthContext);
+
+	const { user } = authContext;
+  
+	const [show, setShow] = useState(false)
+  
+    const showModal = () => {
+		setShow(true) ;
     };
   
-    showModal = () => {
-      this.setState({ show: true });
-    };
-  
-    hideModal = () => {
-      this.setState({ show: false });
+    const hideModal = () => {
+		setShow(false);
     };
 
 
-    render() {
+
 	return (
 		<Wrapper>
 			<Modal
-			          show={this.state.show}
-                      handleClose={this.hideModal}
+			          show={show}
+                      handleClose={hideModal}
 				position="modal-right"
 				heading={
 					"Add a new Patient"
@@ -39,13 +41,14 @@ class AddPatient extends React.Component {
 			<PatientForm/>
 			</Modal>
 
-			<div onClick={this.showModal}>
-			<Button theme="blueBtn">Add new patient</Button>
+			<div onClick={showModal}>
+			{user && user.field==="Nurse" && <Button theme="blueBtn">Add new patient</Button>}
+			
 
 			</div>
 		</Wrapper>
 	);
-}};
+};
 
 AddPatient.propTypes = {
 };

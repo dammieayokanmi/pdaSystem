@@ -9,13 +9,13 @@ const Wrapper = styled.div`
 .MuiAlert-root {
 	font-size: 1.5rem;
 	position: fixed;
-    width: 100%;
+	width: 100%;
+	bottom: 0;
 }
 
 `
 const Alerts = () => {
 	const alertContext = useContext(AlertContext);
- 
 	return (
 		
 		alertContext.alerts.length > 0 && alertContext.alerts.map(alert => (

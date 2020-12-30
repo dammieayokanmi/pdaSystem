@@ -10,7 +10,7 @@ const Patient = require("../models/Patient");
 // @route    GET api/patients
 // @desc     Get all entire patients
 // @access   Private
-router.get("/",   async(req, res) => {
+router.get("/", auth, async(req, res) => {
     try {
       const patients = await Patient.find({ }).sort({
         date: -1,
@@ -27,17 +27,17 @@ router.get("/",   async(req, res) => {
   // @route    GET api/patients/userId
   // @desc     Get all patients based on userId
   // @access   Private
-  router.get("/userId", auth, async (req, res) => {
-    try {
-      const patients = await Patient.find({ user: req.user.id }).sort({
-        date: -1,
-      });
-      res.json(patients);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server Error");
-    }
-  });
+  // router.get("/userId", auth, async (req, res) => {
+  //   try {
+  //     const patients = await Patient.find({ user: req.user.id }).sort({
+  //       date: -1,
+  //     });
+  //     res.json(patients);
+  //   } catch (err) {
+  //     console.error(err.message);
+  //     res.status(500).send("Server Error");
+  //   }
+  // });
   
 
 
@@ -55,13 +55,20 @@ router.post(
       check("dateAdmitted", "Date Admitted is required").not().isEmpty(),
       check("address", "Address is required").not().isEmpty(),
       check("stateOfOrigin", "state Of Origin is required").not().isEmpty(),
-      check("gender", "Gender is required").not().isEmpty(),
-      check("maritalStatus", "Marital Status is required").not().isEmpty(),
+      check("drugAllergies", "Drug Allergies is required").not().isEmpty(),
+      check("foodAllergies", "Food Allergies is required").not().isEmpty(),
       check("phoneNumber", "Phone Number must be 11 characters").isLength({
         min: 11,
         max: 11,
       }),
       check("occupation", "Occupation is required").not().isEmpty(),
+      check("dateTaken", "Date Taken is required").not().isEmpty(),
+      check("dob", "Date of Birth is required").not().isEmpty(),
+      check("gender", "Gender is required").not().isEmpty(),
+      check("maritalStatus", "Marital Status is required").not().isEmpty(),
+      check("doctorIncharge", "Doctor Incharge is required").not().isEmpty(),
+      check("nurseIncharge", "Nurse Incharge is required").not().isEmpty(),
+     
     ],
   ],
   async (req, res) => {
@@ -72,16 +79,21 @@ router.post(
 
     const {
       name,
-      wardNumber,
-      dateAdmitted,
-      address,
-      stateOfOrigin,
-      gender,
-      drugAllergies,
-      foodAllergies,
-      maritalStatus,
-      phoneNumber,
-      occupation,
+    wardNumber,
+    dateAdmitted,
+    address,
+    stateOfOrigin,
+    drugAllergies,
+    foodAllergies,
+    phoneNumber,
+    occupation,
+    dateTaken,
+    dob,
+    gender,
+    maritalStatus,
+    doctorIncharge,
+    nurseIncharge
+   
     } = req.body;
 
     try {
@@ -91,12 +103,16 @@ router.post(
         dateAdmitted,
         address,
         stateOfOrigin,
-        gender,
         drugAllergies,
         foodAllergies,
-        maritalStatus,
         phoneNumber,
         occupation,
+        dateTaken,
+        dob,
+        gender,
+        maritalStatus,
+        doctorIncharge,
+        nurseIncharge,
         user: req.user.id,
       });
 

@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 
 
 	.MuiOutlinedInput-root{
-		border: 1px solid ${props => props.theme.color.ui_01};
+		border: 1px solid ${props => props.theme.color.ui_text_06};
 		border-radius: 2px;
 		&:hover {
 			border: 1px solid ${props => props.theme.color.ui_text_05};
@@ -36,8 +36,8 @@ const Wrapper = styled.div`
 		:focus-within{
 			background-color:${props => props.theme.color.text_03};
 			outline: none;
-			border-color: ${props => props.theme.color.ui_01};
-			box-shadow: 0 0 3px ${props => props.theme.color.ui_01};
+			border-color: ${props => props.theme.color.brand_02};
+			box-shadow: 0 0 3px ${props => props.theme.color.brand_02};
 
 		}
 
@@ -62,18 +62,19 @@ const Wrapper = styled.div`
 
 
 
-const DateInput = ({label, value, onChange, error }) => {
+const DateInput = ({label, value, onChange, textHelper }) => {
 	return (
 		<Wrapper>
 			<MuiPickersUtilsProvider utils={DateFnsUtils} >
 				<h6 className="input_label">{label}</h6>
 				<KeyboardDatePicker
 					fullWidth
+					id="outlined-helperText"
 					inputVariant="outlined"
 					className="input"
 					format="dd/MM/yyyy"
+					label={textHelper}
 					value={value}
-					hintText="Choose Date"
 					onChange={onChange}
 					KeyboardButtonProps={{
 						'aria-label': 'change date',
@@ -81,15 +82,13 @@ const DateInput = ({label, value, onChange, error }) => {
 					keyboardIcon={<img src={datePickerIcon} alt="datePickerIcon"/>}
 				/>
 			</MuiPickersUtilsProvider>
-			<p className="error">{error && error}</p>
 		</Wrapper>
 	);
 };
 
 DateInput.propTypes = {
 	label: PropTypes.string,
-	error: PropTypes.string,
-	placeholder: PropTypes.string,
+	textHelper: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 	value: PropTypes.any.isRequired,
 };

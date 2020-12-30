@@ -1,101 +1,70 @@
 import React, { useReducer } from "react";
-import { v4 as uuid } from "uuid";
 import PatientContext from "./patientContext";
 import patientReducer from "./patientReducer";
 import {
+  GET_PATIENTS,
   ADD_PATIENT,
   DELETE_PATIENT,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_PATIENT,
   FILTER_PATIENTS,
+  CLEAR_PATIENTS,
   CLEAR_FILTER,
+  PATIENT_ERROR
 } from "../types";
+import client from "../client";
 
 const PatientState = (props) => {
   const initialState = {
-    patients: [
-      {
-        id: "1",
-        name: "Opeyemi Bolaji",
-        wardNumber: "ward 5",
-        dateAdmitted: "22/10/2020",
-        address: "Academy, Iwo road.",
-        stateOfOrigin: "Ogun",
-        gender: "Male",
-        drugAllergies: "None",
-        foodAllergies: "Peanuts",
-        maritalStatus: "Single",
-        phoneNumber: "08038383829",
-        occupation: "Tailor",
-
-        dateTaken: "24",
-        Systoic: "134",
-        Examination: "Eccg",
-        Temperature: "37.5",
-        HeartRate: "55",
-        Glucose: "5",
-        Cholesterol: "5",
-        PeriodOfTheDay: "Night",
-      },
-      {
-        id: "2",
-        name: "Yinka Adeleye",
-        wardNumber: "ward 10",
-        dateAdmitted: "2/1/2020",
-        address: "Ogunpa, Bodija road.",
-        stateOfOrigin: "Ondo",
-        gender: "Male",
-        drugAllergies: "Penicillin",
-        foodAllergies: "N0ne",
-        maritalStatus: "Married",
-        phoneNumber: "09011093899",
-        occupation: "Driver",
-
-        dateTaken: "24",
-        Systoic: "134",
-        Examination: "Eccg",
-        Temperature: "37.5",
-        HeartRate: "55",
-        Glucose: "5",
-        Cholesterol: "5",
-        PeriodOfTheDay: "Night",
-      },
-      {
-        id: "3",
-        name: "Sandra Charles",
-        wardNumber: "ward 1",
-        dateAdmitted: "12/11/2007",
-        address: "Oyingbo, Yaba road.",
-        stateOfOrigin: "Delta",
-        gender: "Female",
-        drugAllergies: "Chloroquine",
-        foodAllergies: "Wheat, Onions",
-        maritalStatus: "SIngle",
-        phoneNumber: "09038473728",
-        occupation: "Student",
-
-        dateTaken: "24",
-        Systoic: "134",
-        Examination: "Eccg",
-        Temperature: "37.5",
-        HeartRate: "55",
-        Glucose: "5",
-        Cholesterol: "5",
-        PeriodOfTheDay: "Night",
-      },
-    ],
-
+    patients: null,
     current: null,
     filtered: null,
+    error: null
   };
 
   const [state, dispatch] = useReducer(patientReducer, initialState);
 
+  //Get patients based on logged in user
+
+ const getPatients = async () => {
+      try {
+      const res = await client.get("/api/patients");
+
+      dispatch({ type: GET_PATIENTS, payload: res.data });
+    } catch (err) {
+      dispatch({ type: PATIENT_ERROR, payload: err.response.msg });
+    }
+  };
+
+  //Get entire patients 
+
+//  const getEntirePatients = async () => {
+//       try {
+//       const res = await client.get("/api/allPatients");
+
+//       dispatch({ type: GET_PATIENTS, payload: res.data });
+//     } catch (err) {
+//       dispatch({ type: PATIENT_ERROR, payload: err.response.msg });
+//     }
+//   };
+
+
   // Add patient
-  const addPatient = (patient) => {
-    patient.id = uuid();
-    dispatch({ type: ADD_PATIENT, payload: patient });
+  const addPatient = async (patient) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    } 
+
+    try {
+      const res = await client.post("/api/patients", patient, config);
+
+      dispatch({ type: ADD_PATIENT, payload: res.data });
+    } catch (err) {
+      dispatch({ type: PATIENT_ERROR, payload: err.response.msg });
+    }
   };
 
   // Delete Patient
@@ -108,10 +77,6 @@ const PatientState = (props) => {
     dispatch({ type: SET_CURRENT, payload: patient });
   };
 
-  // //Set Current Reading
-  // const setCurrent = (patient) => {
-  //   dispatch({ type: SET_CURRENT, payload: patient });
-  // };
 
   // CLear Current Patient
   const clearCurrent = () => {
@@ -139,7 +104,7 @@ const PatientState = (props) => {
         patients: state.patients,
         current: state.current,
         filtered: state.filtered,
-        // medicalRecord: state.medicalRecord,
+        error: state.error,
         addPatient,
         updateCurrent,
         deletePatient,
@@ -147,6 +112,7 @@ const PatientState = (props) => {
         clearCurrent,
         filterPatients,
         clearFilter,
+        getPatients,
       }}
     >
       {props.children}

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { TextInput} from "../common/inputs";
+import { TextInput, SelectInput} from "../common/inputs";
 import { Grid } from "@material-ui/core";
 // import Button from "../common/Button";
 // import { Link } from "react-router-dom";
@@ -44,6 +44,18 @@ h3 {
   }
 `;
 
+const optionGender = [
+
+	{ value: 'MALE', text: 'Male' },
+	{ value: 'FEMALE', text: 'Female' },
+];
+const optionStatus = [
+
+	{ value: 'Single', text: 'Single' },
+	{ value: 'Married', text: 'Married' },
+	{ value: 'Divorced', text: 'Divorced' },
+];
+
 const PatientForm = ({midModal}) => {
   const patientContext = useContext(PatientContext);
 
@@ -59,45 +71,54 @@ const PatientForm = ({midModal}) => {
         dateAdmitted: "",
         address: "",
         stateOfOrigin: "",
-        gender: "",
         drugAllergies: "",
         foodAllergies: "",
-        maritalStatus: "",
         phoneNumber: "",
         occupation: "",
-        dateTaken:''
+        dateTaken:'',
+        dob:"",
+        gender: "",
+        maritalStatus: "",
+     doctorIncharge: "",
+     nurseIncharge:""
       });
     }
   }, [patientContext, current]);
 
   const [patient, setPatient] = useState({
     name: "",
-    wardNumber: "",
-    dateAdmitted: "",
-    address: "",
-    stateOfOrigin: "",
-    gender: "",
-    drugAllergies: "",
-    foodAllergies: "",
-    maritalStatus: "",
-    phoneNumber: "",
-    occupation: "",
-    dateTaken:''
+        wardNumber: "",
+        dateAdmitted: "",
+        address: "",
+        stateOfOrigin: "",
+        drugAllergies: "",
+        foodAllergies: "",
+        phoneNumber: "",
+        occupation: "",
+        dateTaken:'',
+        dob:"",
+        gender: "",
+        maritalStatus: "",
+     doctorIncharge: "",
+     nurseIncharge:""
   });
 
   const {
     name,
     wardNumber,
-    // dateAdmitted,
+    dateAdmitted,
     address,
     stateOfOrigin,
-    // gender,
     drugAllergies,
     foodAllergies,
-    // maritalStatus,
     phoneNumber,
     occupation,
     dateTaken,
+    dob,
+    gender,
+    maritalStatus,
+    doctorIncharge,
+    nurseIncharge
   } = patient;
 
   const onChange = (e) =>
@@ -116,13 +137,16 @@ const PatientForm = ({midModal}) => {
       dateAdmitted: "",
       address: "",
       stateOfOrigin: "",
-      gender: "",
       drugAllergies: "",
       foodAllergies: "",
-      maritalStatus: "",
       phoneNumber: "",
       occupation: "",
-      dateTaken: ''
+      dateTaken:'',
+      dob:"",
+      gender: "",
+      maritalStatus: "",
+   doctorIncharge: "",
+   nurseIncharge:""
     });
   };
 
@@ -147,15 +171,7 @@ const PatientForm = ({midModal}) => {
               placeholder="Surname first"
             />
           </Grid>
-          {/* <Grid item xs={12} sm={6}>
-          <TextInput
-            label="Patient's ID"
-            value={p_id}
-            type="number"
-            onChange={onChange}
-            placeholder="Type here..."
-          />
-        </Grid> */}
+        
 
           <Grid item xs={12} sm={6}>
             <TextInput
@@ -168,13 +184,21 @@ const PatientForm = ({midModal}) => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-          Date Admitted
-            {/* <DateInput
+           
+                  {/* <DateInput
               label="Date Admitted"
               name="dateAdmitted"
               value={dateAdmitted}
               onChange={onChange}
             /> */}
+            <TextInput
+              label="dateAdmitted"
+              name="dateAdmitted"
+              value={dateAdmitted}
+              type="text"
+              onChange={onChange}
+              placeholder="Type here..."
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextInput
@@ -196,14 +220,7 @@ const PatientForm = ({midModal}) => {
               placeholder="Type here..."
             />
           </Grid>
-          {/* <Grid item xs={12} sm={6}>
-							<SelectInput
-								label="Select Gender"
-								// options={optionGender}
-                                name='gender'
-                                value={gender}
-								onChange={onChange}/>
-														</Grid> */}
+    
           <Grid item xs={12} sm={6}>
             <TextInput
               label="Drug Allergies"
@@ -224,15 +241,6 @@ const PatientForm = ({midModal}) => {
               placeholder="Type here..."
             />
           </Grid>
-          {/* <Grid item xs={12} sm={6}>
-			<SelectInput
-				label="Select Marital Status"
-				// options={optionStatus}
-                name='maritalStatus'
-                value={maritalStatus}
-				onChange={onChange}
-				/>
-						</Grid> */}
           <Grid item xs={12} sm={6}>
             <TextInput
               label="Phone Number"
@@ -254,8 +262,14 @@ const PatientForm = ({midModal}) => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextInput
+                        {/* <DateInput
               label="Date Taken"
+              name="dateTaken"
+              value={dateTaken}
+              onChange={onChange}
+            /> */}
+            <TextInput
+              label="dateTaken"
               name="dateTaken"
               value={dateTaken}
               type="text"
@@ -264,32 +278,60 @@ const PatientForm = ({midModal}) => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            Date
-            {/* <DateInput
+                    {/* <DateInput
 								label="Date of Birth"
 								value={dob}
-								onChange={onChange}
-								
+								onChange={onChange}/> */}
+
+<TextInput
+              label="dob"
+              name="dob"
+              value={dob}
+              type="text"
+              onChange={onChange}
+              placeholder="Type here..."
+            />
         </Grid>
-        {/* <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={6}>
+							<SelectInput
+								label="Select Gender"
+								options={optionGender}
+                                name='gender'
+                                value={gender}
+								onChange={onChange}/>
+														</Grid>
+          <Grid item xs={12} sm={6}>
+			<SelectInput
+				label="Select Marital Status"
+				options={optionStatus}
+                name='maritalStatus'
+                value={maritalStatus}
+				onChange={onChange}
+				/>
+						</Grid>
+          
+        <Grid item xs={12} sm={6}>
+        
           <TextInput
-            label="Patient's Doctor ID"
-            value={doctor}
-            type="number"
-            onChange={onChange}
-            placeholder="Type here..."
-          />
+              label="doctorIncharge"
+              name="doctorIncharge"
+              value={doctorIncharge}
+              type="text"
+              onChange={onChange}
+              placeholder="Type here..."
+            />
         </Grid>
         <Grid item xs={12} sm={6}>
+        
           <TextInput
-            label="Patient's Nurse ID"
-            value={nurse}
-            type="number"
-            onChange={onChange}
-            placeholder="Type here..."
-          />
-        </Grid> */}
-          </Grid>
+              label="nurseIncharge"
+              name="nurseIncharge"
+              value={nurseIncharge}
+              type="text"
+              onChange={onChange}
+              placeholder="Type here..."
+            />
+        </Grid> 
         </Grid>
         <div  className="submit">
           <input type="submit" value= {current ? "Update patient" : "Add patient"}/>

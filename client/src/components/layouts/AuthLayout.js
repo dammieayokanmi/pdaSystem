@@ -62,8 +62,8 @@ function AuthLayout({ children, greeting, info, img }) {
 
 AuthLayout.propTypes = {
   children: PropTypes.any.isRequired,
-  greeting:PropTypes.string.isRequired,
-  info:PropTypes.any.isRequired,
+  greeting:PropTypes.string,
+  info:PropTypes.any
 };
 
 export default AuthLayout;

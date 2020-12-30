@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import AuthContext from "../../context/auth/authContext";
@@ -132,22 +132,22 @@ function Navbar(props) {
   );
   return (
     <Wrapper>
-      <div class="nav flex">
+      <div className="nav flex">
         <input type="checkbox" id="nav-check" />
-        <div class="nav-header">
-          <Link to="/" class="nav-title">
+        <div className="nav-header">
+          <Link to="/" className="nav-title">
             PDAS
           </Link>
         </div>
-        <div class="nav-btn">
-          <label for="nav-check">
+        <div className="nav-btn">
+          <label htmlFor="nav-check">
             <span></span>
             <span></span>
             <span></span>
           </label>
         </div>
 
-        <ul class="nav-links flex">
+        <ul className="nav-links flex">
 			{isAuthenticated ? authLinks : guestLinks}
 		</ul>
       </div>

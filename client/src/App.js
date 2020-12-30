@@ -4,6 +4,7 @@ import Home from "./components/pages/Home";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Alerts from "./components/layouts/Alerts";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import "./App.css";
 import Theme from "./Theme";
 import PatientState from "./context/patient/PatientState";
@@ -24,12 +25,12 @@ const App = () => {
           <AlertState>
             <Router>
               <Fragment className="App">
-                <Alerts />
                 <Switch>
-                  <Route exact path="/" component={Home} />
+                  <PrivateRoute exact path="/" component={Home} />
                   <Route exact path="/register" component={Register} />
                   <Route exact path="/login" component={Login} />
                 </Switch>
+                <Alerts />
               </Fragment>
             </Router>
           </AlertState>

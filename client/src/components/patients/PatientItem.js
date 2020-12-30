@@ -75,12 +75,16 @@ const PatientItem = ({ patient }) => {
     dateAdmitted,
     address,
     stateOfOrigin,
-    gender,
     drugAllergies,
     foodAllergies,
-    maritalStatus,
     phoneNumber,
     occupation,
+    dateTaken,
+    dob,
+    gender,
+    maritalStatus,
+    doctorIncharge,
+    nurseIncharge,
     // dateTaken,
     systoic,
     examination,
@@ -170,22 +174,12 @@ const PatientItem = ({ patient }) => {
                   )}
                 </div>
                 <div className="grid">
-                  <p className="text"> Gender:</p>
-                  {gender && <h2 className="text value">{gender}</h2>}
-                </div>
-                <div className="grid">
-                  <p className="text"> Food Allergies:</p>
-                  <h2 className="text value">{foodAllergies}</h2>
-                </div>
-                <div className="grid">
                   <p className="text"> Drug Allergies:</p>
                   <h2 className="text value">{drugAllergies}</h2>
                 </div>
                 <div className="grid">
-                  <p className="text">Marital Status:</p>
-                  {maritalStatus && (
-                    <h2 className="text value">{maritalStatus}</h2>
-                  )}
+                  <p className="text"> Food Allergies:</p>
+                  <h2 className="text value">{foodAllergies}</h2>
                 </div>
                 <div className="grid">
                   <p className="text"> Phone Number:</p>
@@ -196,16 +190,36 @@ const PatientItem = ({ patient }) => {
                   {occupation && <h2 className="text value">{occupation}</h2>}
                 </div>
                 <div className="grid">
+                  <p className="text"> Date Taken:</p>
+                  {dateTaken && <h2 className="text value">{dateTaken}</h2>}
+                </div>
+                <div className="grid">
                   <p className="text"> Date of Birth:</p>
-                  <h2 className="text value">22/7/1980</h2>
+                  {dob && <h2 className="text value">{dob}</h2>}
                 </div>
                 <div className="grid">
-                  <p className="text"> Patient's Doctor ID:</p>
-                  <h2 className="text value">7388</h2>
+                  <p className="text"> Gender:</p>
+                  {gender && <h2 className="text value">{gender}</h2>}
+                </div>
+              
+                <div className="grid">
+                  <p className="text">Marital Status:</p>
+                  {maritalStatus && (
+                    <h2 className="text value">{maritalStatus}</h2>
+                  )}
+                </div>
+              
+                <div className="grid">
+                  <p className="text">  Doctor Incharge:</p>
+                  {doctorIncharge && (
+                    <h2 className="text value">{doctorIncharge}</h2>
+                  )}
                 </div>
                 <div className="grid">
-                  <p className="text"> Patient's Nurse ID:</p>
-                  <h2 className="text value">9839</h2>
+                  <p className="text">  Nurse Incharge:</p>
+                  {nurseIncharge && (
+                    <h2 className="text value">{nurseIncharge}</h2>
+                  )}
                 </div>
               </div>
             </div>

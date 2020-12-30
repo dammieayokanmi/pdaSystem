@@ -1,5 +1,4 @@
 import React, { useReducer } from "react";
-import axios from "axios";
 import client from '../client';
 import AuthContext from "./authContext";
 import authReducer from "./authReducer";
@@ -21,7 +20,8 @@ const AuthState = (props) => {
       isAuthenticated: null,
       loading: true,
       user: null,
-      error: null
+      error: null,
+      
   }
 
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -94,7 +94,10 @@ const loadUser= async () => {
   }
 }
  // Logout
- const logout = () => dispatch({type: LOGOUT})
+ const logout = () => {
+   dispatch({type: LOGOUT})
+ }
+ 
 
  //Clear Errors
  const clearErrors = () => dispatch({ type: CLEAR_ERRORS})
