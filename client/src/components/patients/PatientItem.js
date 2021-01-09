@@ -7,7 +7,7 @@ import Button from "../common/Button";
 import PatientContext from "../../context/patient/patientContext";
 import Modal from "@material-ui/core/Modal";
 import PatientForm from "../patients/PatientForm";
-import MedicalForm from "../patients/MedicalForm";
+// import MedicalForm from "../patients/MedicalForm";
 import Recommendation from "../patients/Recommendation";
 
 const Wrapper = styled.div`
@@ -69,7 +69,7 @@ const PatientItem = ({ patient }) => {
   const { deletePatient, setCurrent, clearCurrent } = patientContext;
 
   const {
-    id,
+    _id,
     name,
     wardNumber,
     dateAdmitted,
@@ -83,6 +83,7 @@ const PatientItem = ({ patient }) => {
     dob,
     gender,
     maritalStatus,
+    moreInfo,
     doctorIncharge,
     nurseIncharge,
     // dateTaken,
@@ -93,12 +94,13 @@ const PatientItem = ({ patient }) => {
     glucose,
     cholesterol,
     periodOfTheDay,
+    moreReadings,
     recommendation
   } = patient;
 
 
   const onDelete = () => {
-    deletePatient(id);
+    deletePatient(_id);
     clearCurrent();
   };
   const [open, setOpen] = React.useState(false);
@@ -153,7 +155,7 @@ const PatientItem = ({ patient }) => {
                 </div>
                 <div className="grid">
                   <p className="text"> Patient's ID:</p>
-                  <h2 className="text value">{id}</h2>
+                  <h2 className="text value">{_id}</h2>
                 </div>
                 <div className="grid">
                   <p className="text"> Ward Number:</p>
@@ -208,6 +210,12 @@ const PatientItem = ({ patient }) => {
                     <h2 className="text value">{maritalStatus}</h2>
                   )}
                 </div>
+                <div className="grid">
+                  <p className="text">More informstion:</p>
+                  {moreInfo && (
+                    <h2 className="text value">{moreInfo}</h2>
+                  )}
+                </div>
               
                 <div className="grid">
                   <p className="text">  Doctor Incharge:</p>
@@ -225,7 +233,7 @@ const PatientItem = ({ patient }) => {
             </div>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <Button theme="whiteBtn" onClick={edit}>
+                <Button theme="white" onClick={edit}>
                   Edit
                 </Button>
 
@@ -240,7 +248,7 @@ const PatientItem = ({ patient }) => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <div className="submit">
-                  <Button theme="redBtn" onClick={onDelete}>
+                  <Button theme="red" onClick={onDelete}>
                     Delete Patient
                   </Button>
                 </div>
@@ -283,13 +291,17 @@ const PatientItem = ({ patient }) => {
                   <p className="text">Period of the day:</p>
                   <h2 className="text value">{periodOfTheDay}</h2>
                 </div>
+                <div className="grid">
+                  <p className="text">More Readings:</p>
+                  <h2 className="text value">{moreReadings}</h2>
+                </div>
                 
               </div>
             </div>
             <Grid container spacing={2}>
               
-              <Grid item xs={12} sm={6}>
-                <Button theme="whiteBtn" onClick={upload}>
+              {/* <Grid item xs={12} sm={6}>
+                <Button theme="white" onClick={upload}>
                   Upload Reading
                 </Button>
 
@@ -301,9 +313,9 @@ const PatientItem = ({ patient }) => {
                 >
                   <MedicalForm midModal="hel" />
                 </Modal>
-              </Grid>
+              </Grid> */}
               {/* <Grid item xs={12} sm={6}>
-                <Button theme="whiteBtn">View Doctor's feedback</Button>
+                <Button theme="white">View Doctor's feedback</Button>
               </Grid> */}
             </Grid>
             <hr/>
@@ -313,7 +325,7 @@ const PatientItem = ({ patient }) => {
                   <div>{recommendation}</div>
                 </Grid>
               <Grid item xs={12} sm={6}>
-                <Button theme="whiteBtn" onClick={addComment}>
+                <Button theme="white" onClick={addComment}>
                   Add Comment
                 </Button>
 

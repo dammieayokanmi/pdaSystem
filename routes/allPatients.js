@@ -7,23 +7,26 @@ const User = require("../models/User");
 const Patient = require("../models/Patient");
 
 
-// @route    GET api/patients
-// @desc     Get all patients based on userId
-// @access   Private
-router.get("/", auth, async(req, res) => {
+  
+  
+  
+  // @route    GET api/allPatients
+  // @desc     Get all patients 
+  // @access   Private
+  router.get("/", async (req, res) => {
     try {
-      const patients = await Patient.find({ user: req.user.id }).sort({
-    dateAdmitted: -1,
+      const allPatients = await Patient.find({ }).sort({
+        dateAdmitted: -1,
       });
-      res.json(patients);
+      res.json(allPatients);
     } catch (err) {
       console.error(err.message);
-      res.status(500).send("Server Error")
+      res.status(500).send("Server Error");
     }
   });
   
-  
-  
+
+
 
 // @route    POST api/patients
 // @desc     Add new patient
@@ -57,6 +60,7 @@ router.post(
       check("cholesterol"),
       check("periodOfTheDay"),
            check("moreReadings"),
+
     ],
   ],
   async (req, res) => {
@@ -82,6 +86,7 @@ router.post(
     moreInfo,
     doctorIncharge,
     nurseIncharge,
+    // dateTaken,
     systoic,
     examination,
     temperature,
@@ -90,7 +95,7 @@ router.post(
     cholesterol,
     periodOfTheDay,
     moreReadings,
-   
+       
     } = req.body;
 
     try {
@@ -109,16 +114,18 @@ router.post(
         gender,
         maritalStatus,
         moreInfo,
-        doctorIncharge,
-        nurseIncharge,
-        systoic,
-        examination,
-        temperature,
-        heartRate,
-        glucose,
-        cholesterol,
-        periodOfTheDay,
-        moreReadings,
+    doctorIncharge,
+    nurseIncharge,
+    // dateTaken,
+    systoic,
+    examination,
+    temperature,
+    heartRate,
+    glucose,
+    cholesterol,
+    periodOfTheDay,
+    moreReadings,
+    
         user: req.user.id,
       });
 
@@ -149,23 +156,8 @@ router.post("/:id", (req, res) => {
 // @route    DELETE api/patients/:id
 // @desc     Delete patient
 // @access   Private
-router.delete('/:id', auth, async (req, res) => {
-	try {
-		const patient = await Patient.findById(req.params.id);
-
-		if (!patient) return res.status(404).json({ msg: 'Patient not found' });
-
-		// Make sure user owns patient
-		if (patient.user.toString() !== req.user.id)
-			return res.status(401).json({ msg: 'Not authorized' });
-
-		await Patient.findByIdAndRemove(req.params.id);
-
-		res.json({ msg: 'Patient removed' });
-	} catch (err) {
-		console.error(err.message);
-		res.status(500).send('Server error');
-	}
+router.delete("/:id", (req, res) => {
+  res.send("Delete patient");
 });
 
 module.exports = router;

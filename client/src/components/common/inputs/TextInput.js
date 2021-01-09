@@ -77,7 +77,7 @@ const TextInput = ({ label, onChange, value, placeholder, error,  type, name }) 
 					className="input"
 					value={value}
 					name={name}
-					required={true}
+					// required={true}
 					onChange={onChange}
 					type={type ? type : 'text'}
 				/>

@@ -3,6 +3,7 @@ import PatientContext from "./patientContext";
 import patientReducer from "./patientReducer";
 import {
   GET_PATIENTS,
+  GET_ALL_PATIENTS,
   ADD_PATIENT,
   DELETE_PATIENT,
   SET_CURRENT,
@@ -39,15 +40,15 @@ const PatientState = (props) => {
 
   //Get entire patients 
 
-//  const getEntirePatients = async () => {
-//       try {
-//       const res = await client.get("/api/allPatients");
+ const getAllPatients = async () => {
+      try {
+      const res = await client.get("/api/allPatients");
 
-//       dispatch({ type: GET_PATIENTS, payload: res.data });
-//     } catch (err) {
-//       dispatch({ type: PATIENT_ERROR, payload: err.response.msg });
-//     }
-//   };
+      dispatch({ type: GET_ALL_PATIENTS, payload: res.data });
+    } catch (err) {
+      dispatch({ type: PATIENT_ERROR, payload: err.response.msg });
+    }
+  };
 
 
   // Add patient
@@ -59,18 +60,51 @@ const PatientState = (props) => {
     } 
 
     try {
-      const res = await client.post("/api/patients", patient, config);
+      const res = await client.post("/api/allPatients", patient, config);
 
       dispatch({ type: ADD_PATIENT, payload: res.data });
     } catch (err) {
       dispatch({ type: PATIENT_ERROR, payload: err.response.msg });
+    
     }
   };
 
   // Delete Patient
-  const deletePatient = (id) => {
-    dispatch({ type: DELETE_PATIENT, payload: id });
+  const deletePatient = async (id) => {
+    try {
+     await client.delete(`/api/patients/${id}`);
+
+     dispatch({ type: DELETE_PATIENT, payload: id });
+    } catch (err) {
+      dispatch({ type: PATIENT_ERROR, payload: err.response.msg });
+    
+    }
   };
+
+   //Update patient
+   const updateCurrent = async (patient) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    } 
+
+    try {
+      const res = await client.put(`/api/allPatients/${patient._id}`, patient, config);
+
+      dispatch({ type: UPDATE_PATIENT, payload: res.data });
+    } catch (err) {
+      dispatch({ type: PATIENT_ERROR, payload: err.response.msg });
+    
+    }
+  };
+
+  //clear patients
+  const clearPatients = () => {
+    dispatch({ type: CLEAR_PATIENTS});
+  };
+
+
 
   //Set Current patient
   const setCurrent = (patient) => {
@@ -83,10 +117,7 @@ const PatientState = (props) => {
     dispatch({ type: CLEAR_CURRENT });
   };
 
-  //Update patient
-  const updateCurrent = (patient) => {
-    dispatch({ type: UPDATE_PATIENT, payload: patient });
-  };
+ 
 
   //Filter patients
   const filterPatients = (text) => {
@@ -108,11 +139,13 @@ const PatientState = (props) => {
         addPatient,
         updateCurrent,
         deletePatient,
+        clearPatients,
         setCurrent,
         clearCurrent,
         filterPatients,
         clearFilter,
-        getPatients,
+        getPatients,getAllPatients
+
       }}
     >
       {props.children}

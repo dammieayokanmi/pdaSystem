@@ -7,11 +7,11 @@ const PatientSchema = mongoose.Schema({
     },
     name: {
         type: String,
-        required: true
+        // required: true
     },
     wardNumber: {
         type: String,
-        required: true,
+        // required: true,
     },
     dateAdmitted: {
         type: Date,
@@ -19,11 +19,11 @@ const PatientSchema = mongoose.Schema({
     },
     address: {
         type: String,
-        required: true
+        // required: true
     },
     stateOfOrigin: {
         type: String,
-        required: true
+        // required: true
     },
     drugAllergies: {
         type: String,
@@ -33,37 +33,70 @@ const PatientSchema = mongoose.Schema({
     },
     phoneNumber: {
         type: Number,
-        required: true
+        // required: true
     },
     occupation: {
         type: String,
-        required: true
+        // required: true
     },
     dateTaken: {
         type: Number,
-        required: true
+        // required: true
     },
     dob: {
         type: String,
-        required: true
+        // required: true
     },
     gender: {
         type: String,
-        required: true
+        // required: true
     },
   
     maritalStatus: {
         type: String,
-        required: true
+        // required: true
     },
     doctorIncharge: {
         type: String,
-        required: true
+        // required: true
+    },
+    moreInfo: {
+        type: String,
+    },
+   
+    systoic: {
+        type: String,
+        // required: true
+    },
+    examination: {
+        type: String,
+        // required: true
+    },
+    temperature: {
+        type: String,
+        // required: true
     },
   
-    nurseIncharge: {
+    heartRate: {
         type: String,
-        required: true
+        // required: true
+    },
+    glucose: {
+        type: String,
+        // required: true
+    },
+    cholesterol: {
+        type: String,
+        // required: true
+    },
+    periodOfTheDay: {
+        type: String,
+        // required: true
+    },
+
+  
+    moreReadings: {
+        type: String,
     },
    
 });

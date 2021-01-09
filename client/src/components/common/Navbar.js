@@ -3,6 +3,7 @@ import React, { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import AuthContext from "../../context/auth/authContext";
+import PatientContext from "../../context/patient/patientContext";
 
 const Wrapper = styled.div`
   .nav {
@@ -105,11 +106,14 @@ const Wrapper = styled.div`
 
 function Navbar(props) {
   const authContext = useContext(AuthContext);
+  const patientContext = useContext(PatientContext);
 
   const { isAuthenticated, logout, user } = authContext;
+  const { clearPatients} = patientContext;
 
   const onLogout = () =>{
-	  logout();
+    logout();
+    clearPatients();
   }
   const authLinks = (
     <Fragment>

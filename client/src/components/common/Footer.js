@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Button from "../../components/common/Button";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
+import PatientContext from "../../context/patient/patientContext";
 
 const Wrapper = styled.div`
  
@@ -25,11 +26,14 @@ const Wrapper = styled.div`
 
 function PatientProfile() {
   const authContext = useContext(AuthContext);
+  const patientContext = useContext(PatientContext);
 
   const {  logout } = authContext;
+  const { clearPatients} = patientContext;
 
-  const onLogout = () =>{
-	  logout();
+  const onLogout = () => {
+    logout();
+    clearPatients();
   }
     return (
         <Wrapper>
@@ -37,7 +41,7 @@ function PatientProfile() {
         <div className="buttons">
         
 <Link to='#!'>
-<Button theme="blackBtn" onClick={onLogout}>Logout</Button>
+<Button theme="black" onClick={onLogout}>Logout</Button>
 </Link>
         </div>
         </Wrapper>

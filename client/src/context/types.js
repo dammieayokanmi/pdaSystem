@@ -1,5 +1,5 @@
 export const GET_PATIENTS = 'GET_PATIENTS';
-export const GET_ENTIRE_PATIENTS = 'GET_ENTIRE_PATIENTS ';
+export const GET_ALL_PATIENTS = 'GET_ALL_PATIENTS ';
 export const ADD_PATIENT = 'ADD_PATIENT';
 export const DELETE_PATIENT = 'DELETE_PATIENT';
 export const SET_CURRENT = 'SET_CURRENT';

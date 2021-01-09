@@ -80,13 +80,11 @@ function Button({style, theme, children, text, ...rest}) {
 Button.propTypes = {
 	style: PropTypes.object,
 	theme: PropTypes.oneOf([
-		'pink',
-		'purple',
-		'yellow',
-		'green',
+				'black',
+		'blue',
+		"red",
 		'white',
-		'deepYellow',
-		'darkGreen'])
+		])
 };
 
 export default Button;

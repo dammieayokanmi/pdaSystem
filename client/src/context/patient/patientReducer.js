@@ -1,7 +1,9 @@
 import {
   GET_PATIENTS,
+  GET_ALL_PATIENTS,
   ADD_PATIENT,
   DELETE_PATIENT,
+  CLEAR_PATIENTS,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_PATIENT,
@@ -18,17 +20,23 @@ export default (state, action) => {
         patients: action.payload,
         loading: false,
       };
+    case GET_ALL_PATIENTS:
+      return {
+        ...state,
+        patients: action.payload,
+        loading: false,
+      };
     case ADD_PATIENT:
       return {
         ...state,
-        patients: [...state.patients, action.payload],
+        patients: [action.payload,...state.patients ],
         loading: false,
       };
     case UPDATE_PATIENT:
       return {
         ...state,
         patients: state.patients.map((patient) =>
-          patient.id === action.payload.id ? action.payload : patient
+          patient._id === action.payload._id ? action.payload : patient
         ),
         loading: false
       };
@@ -36,9 +44,17 @@ export default (state, action) => {
       return {
         ...state,
         patients: state.patients.filter(
-          (patient) => patient.id !== action.payload
+          (patient) => patient._id !== action.payload
         ),
       };
+      case CLEAR_PATIENTS:
+        return{
+          ...state,
+          patients:null,
+          filtered:null,
+          error:null,
+          current:null
+        }
     case SET_CURRENT:
       return {
         ...state,

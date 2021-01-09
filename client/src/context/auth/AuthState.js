@@ -88,7 +88,7 @@ const loadUser= async () => {
   } catch (err) {
     dispatch({
       type: LOGIN_FAIL,
-     payload: err.response.data.msg
+     payload: err.response && err.response.data.msg
    
    });
   }
