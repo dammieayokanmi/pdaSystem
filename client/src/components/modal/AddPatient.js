@@ -42,8 +42,8 @@ function AddPatient() {
 			</Modal>
 
 			<div onClick={showModal}>
-			{user && user.field==="Nurse" && <Button theme="blueBtn">Add new patient</Button>}
-			
+			{/* {user && user.field==="Nurse" && <Button theme="blueBtn">Add new patient</Button>} */}
+			<Button theme="blueBtn">Add new patient</Button>
 
 			</div>
 		</Wrapper>

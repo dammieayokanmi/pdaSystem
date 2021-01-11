@@ -6,6 +6,7 @@ import { Grid } from "@material-ui/core";
 // import Patient from "../../../../models/Patient";
 import PatientContext from "../../context/patient/patientContext";
 import styled from "styled-components";
+import AuthContext from "../../context/auth/authContext";
 
 const Wrapper = styled.div`
   width: fit-content;
@@ -55,7 +56,9 @@ const optionStatus = [
 
 const PatientForm = ({ midModal }) => {
   const patientContext = useContext(PatientContext);
+  const authContext = useContext(AuthContext);
 
+	const { user } = authContext;
   const { addPatient, updateCurrent, clearCurrent, current } = useContext(
     PatientContext
   );
@@ -89,6 +92,7 @@ const PatientForm = ({ midModal }) => {
         cholesterol: "",
         periodOfTheDay: "",
         moreReadings: "",
+        recommendation: "",
       });
     }
   }, [patientContext, current]);
@@ -119,6 +123,7 @@ const PatientForm = ({ midModal }) => {
     cholesterol: "",
     periodOfTheDay: "",
     moreReadings: "",
+    recommendation: "",
   });
 
   const {
@@ -185,6 +190,7 @@ const PatientForm = ({ midModal }) => {
         cholesterol: "",
         periodOfTheDay: "",
         moreReadings: "",
+        recommendation:""
     });
   };
 
@@ -461,6 +467,17 @@ const PatientForm = ({ midModal }) => {
                 placeholder="Type moreReadings "
               />
             </Grid>
+            {user && user.field==="Doctor" &&<Grid item xs={12} sm={6}>
+              <textarea
+                name="recommendation"
+                value={recommendation}
+                type="text"
+                cols="30"
+                rows="10"
+                onChange={onChange}
+                placeholder="Type recommendation "
+              />
+            </Grid>}
           </Grid>
           <div className="submit">
             <input type="submit" value={current ? "Update data" : "Add data"} />

@@ -98,6 +98,9 @@ const PatientSchema = mongoose.Schema({
     moreReadings: {
         type: String,
     },
+    recommendation: {
+        type: String,
+    },
    
 });
 

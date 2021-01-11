@@ -90,7 +90,7 @@ const PatientState = (props) => {
     } 
 
     try {
-      const res = await client.put(`/api/allPatients/${patient._id}`, patient, config);
+      const res = await client.put(`/api/patients/${patient._id}`, patient, config);
 
       dispatch({ type: UPDATE_PATIENT, payload: res.data });
     } catch (err) {

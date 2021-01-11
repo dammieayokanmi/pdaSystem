@@ -60,6 +60,7 @@ router.post(
       check("cholesterol"),
       check("periodOfTheDay"),
            check("moreReadings"),
+           check("recommendation"),
 
     ],
   ],
@@ -95,7 +96,7 @@ router.post(
     cholesterol,
     periodOfTheDay,
     moreReadings,
-       
+    recommendation
     } = req.body;
 
     try {
@@ -125,7 +126,7 @@ router.post(
     cholesterol,
     periodOfTheDay,
     moreReadings,
-    
+    recommendation,
         user: req.user.id,
       });
 

@@ -57,6 +57,7 @@ router.post(
       check("cholesterol"),
       check("periodOfTheDay"),
            check("moreReadings"),
+           check("recommendation"),
     ],
   ],
   async (req, res) => {
@@ -90,6 +91,7 @@ router.post(
     cholesterol,
     periodOfTheDay,
     moreReadings,
+    recommendation
    
     } = req.body;
 
@@ -119,6 +121,7 @@ router.post(
         cholesterol,
         periodOfTheDay,
         moreReadings,
+        recommendation,
         user: req.user.id,
       });
 

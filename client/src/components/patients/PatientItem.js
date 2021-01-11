@@ -8,7 +8,6 @@ import PatientContext from "../../context/patient/patientContext";
 import Modal from "@material-ui/core/Modal";
 import PatientForm from "../patients/PatientForm";
 // import MedicalForm from "../patients/MedicalForm";
-import Recommendation from "../patients/Recommendation";
 
 const Wrapper = styled.div`
   .basic-info,
@@ -298,46 +297,14 @@ const PatientItem = ({ patient }) => {
                 
               </div>
             </div>
-            <Grid container spacing={2}>
-              
-              {/* <Grid item xs={12} sm={6}>
-                <Button theme="white" onClick={upload}>
-                  Upload Reading
-                </Button>
-
-                <Modal
-                  open={up}
-                  onClose={handleDown}
-                  aria-labelledby="simple-modal-title"
-                  aria-describedby="simple-modal-description"
-                >
-                  <MedicalForm midModal="hel" />
-                </Modal>
-              </Grid> */}
-              {/* <Grid item xs={12} sm={6}>
-                <Button theme="white">View Doctor's feedback</Button>
-              </Grid> */}
-            </Grid>
+           
             <hr/>
             <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
                 <p id="rec">Doctor's Recommendation: </p>
                   <div>{recommendation}</div>
                 </Grid>
-              <Grid item xs={12} sm={6}>
-                <Button theme="white" onClick={addComment}>
-                  Add Comment
-                </Button>
-
-                <Modal
-                  open={upComment}
-                  onClose={handleDownComment}
-                  aria-labelledby="simple-modal-title"
-                  aria-describedby="simple-modal-description"
-                >
-                  <Recommendation midModal="hel" />
-                </Modal>
-              </Grid>
+             
             
             </Grid>
             
